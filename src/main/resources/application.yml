@@ -1,5 +1,3 @@
-#spring.application.name=jpa2
-
 spring:
   datasource:
     url: jdbc:h2:tcp://localhost/~/jpa2
