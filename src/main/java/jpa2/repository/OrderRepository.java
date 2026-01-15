@@ -42,7 +42,7 @@ public class OrderRepository {
         }
 
         // 회원 이름 검색
-        if(StringUtils.hasText(orderSearch.getSearchName())) {
+        if(StringUtils.hasText(orderSearch.getMemberName())) {
             if(isFirstCondition) {
                 jpql += " where";
                 isFirstCondition = false;
@@ -58,8 +58,8 @@ public class OrderRepository {
         if (orderSearch.getOrderStatus() != null) {
             query = query.setParameter("status", orderSearch.getOrderStatus());
         }
-        if (StringUtils.hasText(orderSearch.getSearchName())) {
-            query = query.setParameter("name", orderSearch.getSearchName());
+        if (StringUtils.hasText(orderSearch.getMemberName())) {
+            query = query.setParameter("name", orderSearch.getMemberName());
         }
 
         return query.getResultList();
@@ -81,9 +81,9 @@ public class OrderRepository {
         }
 
         // 회원 이름 검색
-        if (StringUtils.hasText(orderSearch.getSearchName())) {
+        if (StringUtils.hasText(orderSearch.getMemberName())) {
             Predicate name =
-                    cb.like(m.<String>get("name"), "%" + orderSearch.getSearchName() + "%");
+                    cb.like(m.<String>get("name"), "%" + orderSearch.getMemberName() + "%");
             criteria.add(name);
         }
 

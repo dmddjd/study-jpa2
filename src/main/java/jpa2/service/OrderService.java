@@ -7,9 +7,12 @@ import jpa2.domain.*;
 import jpa2.repository.ItemRepository;
 import jpa2.repository.MemberRepository;
 import jpa2.repository.OrderRepository;
+import jpa2.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -53,8 +56,7 @@ public class OrderService {
         order.cancel();
     }
 
-    // 검색
-//    public List<Order> findOrders(OrderSearch orderSearch) {
-//        return orderRepository.findAll(orderSearch);
-//    }
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByString(orderSearch);
+    }
 }
