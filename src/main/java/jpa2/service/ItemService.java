@@ -1,7 +1,6 @@
 package jpa2.service;
 
 import jpa2.domain.Item;
-import jpa2.domain.item.Book;
 import jpa2.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,6 @@ import java.util.List;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class ItemService {
-
     public final ItemRepository itemRepository;
 
     @Transactional()

@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class ItemUpdateTest {
-
     @Autowired
     EntityManager em;
 
@@ -18,11 +17,9 @@ public class ItemUpdateTest {
     public void updateTest() throws Exception {
         // given
         Book book = em.find(Book.class, 1L);
+
         // when
         book.setName("test");
         // 변경감지 == dirty checking
-
-        // then
-
     }
 }

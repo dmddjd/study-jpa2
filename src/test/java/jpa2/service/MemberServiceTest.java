@@ -1,9 +1,7 @@
 package jpa2.service;
 
-
 import jpa2.domain.Member;
 import jpa2.repository.MemberRepository;
-import jpa2.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 class MemberServiceTest {
-
-    @Autowired
-    MemberService memberService;
-
-    @Autowired
-    MemberRepository memberRepository;
-
-//    @Autowired
-//    EntityManager em;
+    @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
+//    @Autowired EntityManager em;
 
     @Test
 //    @Rollback(value = false)

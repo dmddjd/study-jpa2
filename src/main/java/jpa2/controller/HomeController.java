@@ -19,7 +19,6 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class HomeController {
-
     private final MemberService memberService;
 
     @RequestMapping("/")
@@ -35,12 +34,12 @@ public class HomeController {
         }
 
         Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
-
         Member member = new Member();
+
         member.setName(form.getName());
         member.setAddress(address);
-
         memberService.join(member);
+
         return "redirect:/";
     }
 
@@ -48,6 +47,7 @@ public class HomeController {
     public String list(Model model) {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
+
         return "members/memberList";
     }
 }

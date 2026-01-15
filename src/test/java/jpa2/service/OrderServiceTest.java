@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 class OrderServiceTest {
-
     @Autowired EntityManager em;
     @Autowired OrderService orderService;
     @Autowired OrderRepository orderRepository;
@@ -27,7 +26,6 @@ class OrderServiceTest {
     void 상품주문() throws Exception {
         // given
         Member member = createMember();
-
         Book book = createBook("jpa", 10000, 10);
 
         // when
@@ -79,6 +77,7 @@ class OrderServiceTest {
         member.setName("member1");
         member.setAddress(new Address("서울","경기","123-123"));
         em.persist(member);
+
         return member;
     }
 
@@ -88,6 +87,7 @@ class OrderServiceTest {
         book.setPrice(price);
         book.setStockQuantity(stockQuantity);
         em.persist(book);
+
         return book;
     }
 }
