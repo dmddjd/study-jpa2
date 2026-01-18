@@ -1,5 +1,6 @@
 package jpa2.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
@@ -14,8 +15,8 @@ public class Member {
     @Id @GeneratedValue
     @Column(name = "member_id")
     private Long id;
-    @NotEmpty
     private String name;
+    @JsonIgnore
     @Embedded
     private Address address;
     @OneToMany(mappedBy = "member")
