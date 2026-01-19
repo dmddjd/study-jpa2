@@ -16,9 +16,9 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
     private String name;
-    @JsonIgnore
     @Embedded
     private Address address;
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 }
