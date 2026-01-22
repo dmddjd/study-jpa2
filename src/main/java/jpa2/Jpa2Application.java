@@ -12,6 +12,6 @@ public class Jpa2Application {
 	}
 //    @Bean
 //    Hibernate6JakartaModule hibernate6JakartaModule() {
-//        return new Hibernate6JakartaModule
+//        return new Hibernate6JakartaModule;
 //    }
 }
