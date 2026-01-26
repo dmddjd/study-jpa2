@@ -1,11 +1,8 @@
 package jpa2.service;
 
 import jpa2.domain.*;
-import jpa2.domain.*;
-import jpa2.domain.*;
-import jpa2.domain.*;
 import jpa2.repository.ItemRepository;
-import jpa2.repository.MemberRepository;
+import jpa2.repository.MemberRepositoryOld;
 import jpa2.repository.OrderRepository;
 import jpa2.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +16,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final MemberRepository memberRepository;
+    private final MemberRepositoryOld memberRepositoryOld;
     private final ItemRepository itemRepository;
 
     // 주문
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
         // 엔티티 조회
-        Member member = memberRepository.findOne(memberId);
+        Member member = memberRepositoryOld.findOne(memberId);
         Item item = itemRepository.findOne(itemId);
 
         // 배송정보 생성
