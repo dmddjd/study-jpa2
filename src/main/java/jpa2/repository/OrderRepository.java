@@ -1,15 +1,23 @@
 package jpa2.repository;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
 import jpa2.domain.Order;
+import jpa2.domain.OrderStatus;
+import jpa2.domain.QMember;
+import jpa2.domain.QOrder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static jpa2.domain.QMember.member;
+import static jpa2.domain.QOrder.order;
 
 @Repository
 @RequiredArgsConstructor
@@ -92,12 +100,35 @@ public class OrderRepository {
     }
 
     public List<Order> findAll(OrderSearch orderSearch) {
+        QOrder order = QOrder.order;
+        QMember member = QMember.member;
+
+        JPAQueryFactory query = new JPAQueryFactory(em);
+
+        return query
+                .select(order)
+                .from(order)
+                .join(order.member, member)
+                .where(statusEq(orderSearch.getOrderStatus()),
+                       nameLike(orderSearch.getMemberName()))
+                .limit(1000)
+                .fetch();
 
     }
 
+    private BooleanExpression statusEq(OrderStatus statusCond) {
+        if (statusCond == null) {
+            return null;
+        }
+        return QOrder.order.status.eq(statusCond);
+    }
 
-
-
+    private BooleanExpression nameLike(String nameCond) {
+        if (!StringUtils.hasText(nameCond)) {
+            return null;
+        }
+        return QMember.member.name.like(nameCond);
+    }
 
     public List<Order> findAllWithMemberDelivery() {
         return em.createQuery(
